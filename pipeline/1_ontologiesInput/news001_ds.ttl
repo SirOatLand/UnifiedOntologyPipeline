@@ -1,0 +1,118 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix news: <http://www.semanticweb.org/oat/ontologies/2025/1/news#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/oat/ontologies/2025/1/news> .
+
+<http://www.semanticweb.org/oat/ontologies/2025/1/news> rdf:type owl:Ontology .
+
+
+
+
+# Classes
+news:Vulnerability a rdfs:Class ;
+rdfs:label "Vulnerability" ;
+rdfs:comment "A security flaw or weakness in a system that can be exploited." .
+
+news:CloudService a rdfs:Class ;
+rdfs:label "Cloud Service" ;
+rdfs:comment "A service provided by a cloud infrastructure provider." .
+
+news:Database a rdfs:Class ;
+rdfs:label "Database" ;
+rdfs:comment "A structured collection of data." .
+
+news:NoSQLDatabase a rdfs:Class ;
+rdfs:subClassOf news:Database ;
+rdfs:label "NoSQL Database" ;
+rdfs:comment "A non-relational database designed for scalability and flexibility." .
+
+news:Company a rdfs:Class ;
+rdfs:label "Company" ;
+rdfs:comment "An organization that provides products or services." .
+
+news:SecurityTeam a rdfs:Class ;
+rdfs:label "Security Team" ;
+rdfs:comment "A group of researchers or professionals focused on identifying and mitigating security vulnerabilities." .
+
+news:Exploit a rdfs:Class ;
+rdfs:label "Exploit" ;
+rdfs:comment "A method or technique used to take advantage of a vulnerability." .
+
+news:PrimaryKey a rdfs:Class ;
+rdfs:label "Primary Key" ;
+rdfs:comment "A credential used to access and manage administrative resources in a database." .
+
+news:Customer a rdfs:Class ;
+rdfs:label "Customer" ;
+rdfs:comment "An entity that uses a service or product." .
+
+# Properties
+news:hasVulnerability a rdf:Property ;
+rdfs:label "has vulnerability" ;
+rdfs:domain news:CloudService ;
+rdfs:range news:Vulnerability ;
+rdfs:comment "Indicates that a cloud service has a specific vulnerability." .
+
+news:exploits a rdf:Property ;
+rdfs:label "exploits" ;
+rdfs:domain news:Exploit ;
+rdfs:range news:Vulnerability ;
+rdfs:comment "Indicates that an exploit takes advantage of a vulnerability." .
+
+news:reportedBy a rdf:Property ;
+rdfs:label "reported by" ;
+rdfs:domain news:Vulnerability ;
+rdfs:range news:SecurityTeam ;
+rdfs:comment "Indicates the security team that reported the vulnerability." .
+
+news:affects a rdf:Property ;
+rdfs:label "affects" ;
+rdfs:domain news:Vulnerability ;
+rdfs:range news:Customer ;
+rdfs:comment "Indicates the customers affected by the vulnerability." .
+
+news:requiresMitigation a rdf:Property ;
+rdfs:label "requires mitigation" ;
+rdfs:domain news:Vulnerability ;
+rdfs:range news:PrimaryKey ;
+rdfs:comment "Indicates that mitigating the vulnerability requires regenerating primary keys." .
+
+news:disclosureDate a rdf:Property ;
+rdfs:label "disclosure date" ;
+rdfs:domain news:Vulnerability ;
+rdfs:range xsd:date ;
+rdfs:comment "The date when the vulnerability was disclosed." .
+
+news:bountyAmount a rdf:Property ;
+rdfs:label "bounty amount" ;
+rdfs:domain news:Vulnerability ;
+rdfs:range xsd:decimal ;
+rdfs:comment "The amount awarded as a bounty for reporting the vulnerability." .
+
+# Instances
+news:ChaosDB a news:Vulnerability ;
+rdfs:label "ChaosDB" ;
+news:disclosureDate "2021-08-12"^^xsd:date ;
+news:bountyAmount 40000.00 ;
+news:reportedBy news:WizResearchTeam ;
+news:affects news:AzureCosmosDBCustomers ;
+news:requiresMitigation news:PrimaryKeyRegeneration .
+
+news:AzureCosmosDB a news:NoSQLDatabase ;
+rdfs:label "Azure Cosmos DB" ;
+news:hasVulnerability news:ChaosDB .
+
+news:WizResearchTeam a news:SecurityTeam ;
+rdfs:label "Wiz Research Team" .
+
+news:AzureCosmosDBCustomers a news:Customer ;
+rdfs:label "Azure Cosmos DB Customers" .
+
+news:PrimaryKeyRegeneration a news:PrimaryKey ;
+rdfs:label "Primary Key Regeneration" .
+
+news:Microsoft a news:Company ;
+rdfs:label "Microsoft" .
