@@ -1,6 +1,7 @@
 /pipeline/1_ontologiesInput/*
 /pipeline/2_connectOutput/*
 /pipeline/3_mergeOutput/*
+.env
 
 !/pipeline/1_ontologiesInput/news001_ds.ttl
 !/pipeline/2_connectOutput/news001_ds_connected.ttl
