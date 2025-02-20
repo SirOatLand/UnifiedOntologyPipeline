@@ -1,8 +1,10 @@
 /pipeline/1_ontologiesInput/*
 /pipeline/2_connectOutput/*
 /pipeline/3_mergeOutput/*
+/refine/4_refineOutput/*
 .env
 
 !/pipeline/1_ontologiesInput/news001_ds.ttl
 !/pipeline/2_connectOutput/news001_ds_connected.ttl
 !/pipeline/3_mergeOutput/.gitkeep
+!/refine/4_refineOutput/.gitkeep
